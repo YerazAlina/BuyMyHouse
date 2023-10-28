@@ -8,6 +8,7 @@ namespace BuyMyHouse.DAL
         DbSet<User> Users { get; set; }
         DbSet<House> Houses { get; set; }
         DbSet<Mortgage> Mortgages { get; set; }
-
+        
+        public BuyMyHouseDbContext(DbContextOptions<BuyMyHouseDbContext> options) : base(options) { }
     }
 }
