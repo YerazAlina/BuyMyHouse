@@ -3,6 +3,7 @@
     public class Mortgage
     {
         //Mortgage: Amount, 
-        public int Id { get; set; }
+        public int MortgageId { get; set; }
+        public double Loan { get; set; }
     }
 }
