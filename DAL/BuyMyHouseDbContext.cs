@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using BuyMyHouse.Models; 
+﻿using BuyMyHouse.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BuyMyHouse.DAL
 {
