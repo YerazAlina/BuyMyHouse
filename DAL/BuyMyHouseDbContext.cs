@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using BuyMyHouse.Models; 
+﻿using BuyMyHouse.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BuyMyHouse.DAL
 {
@@ -8,6 +8,7 @@ namespace BuyMyHouse.DAL
         DbSet<User> Users { get; set; }
         DbSet<House> Houses { get; set; }
         DbSet<Mortgage> Mortgages { get; set; }
-
+        
+        public BuyMyHouseDbContext(DbContextOptions<BuyMyHouseDbContext> options) : base(options) { }
     }
 }
