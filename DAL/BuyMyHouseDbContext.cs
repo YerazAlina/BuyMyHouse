@@ -10,5 +10,9 @@ namespace BuyMyHouse.DAL
         DbSet<Mortgage> Mortgages { get; set; }
         
         public BuyMyHouseDbContext(DbContextOptions<BuyMyHouseDbContext> options) : base(options) { }
+
+        public BuyMyHouseDbContext()
+        {
+        }
     }
 }

@@ -1,4 +1,5 @@
 using BuyMyHouse.DAL;
+using DAL.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuyMyHouse.Controllers
