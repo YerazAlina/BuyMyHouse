@@ -1,5 +1,6 @@
 ﻿using BuyMyHouse.Models;
 using BuyMyHouse.Service.Interfaces;
+using DAL.Repository.Interfaces;
 
 namespace BuyMyHouse.Service
 {
@@ -7,7 +8,7 @@ namespace BuyMyHouse.Service
     {
         private readonly IHouseRepository _houseRepository;
 
-        public HouseService(IhouseRepository houseRepository)
+        public HouseService(IHouseRepository houseRepository)
         {
                 _houseRepository = houseRepository;
         }
