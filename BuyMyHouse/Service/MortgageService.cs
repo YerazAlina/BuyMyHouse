@@ -7,6 +7,11 @@ namespace BuyMyHouse.Service
     {
         private readonly IMortgageRepository _mortgageRepository;
 
+        public MortgageService(IMortgageRepository mortgageRepository)
+        {
+            _mortgageRepository = mortgageRepository;
+        }
+
         public void Delete(object id)
         {
             throw new NotImplementedException();
