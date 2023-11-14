@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "MailFunction": {
+    "Mail": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7172",
+      "commandLineArgs": "--port 7019",
       "launchBrowser": false
     }
   }

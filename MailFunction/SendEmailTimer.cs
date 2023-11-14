@@ -1,30 +1,50 @@
 using System;
-using BuyMyHouse.Models;
+using System.Net.Mail;
 using BuyMyHouse.Service.Interfaces;
-using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace MailFunction
 {
     public class SendEmailTimer
     {
-        private readonly IUserService _userService;
-        private readonly IMortgageService _mortgageService;
-
-        public SendEmailTimer(IUserService userService, IMortgageService mortgageService)
+        [FunctionName("SendMail")]
+        public void Run([TimerTrigger("0 * * * * *")] TimerInfo myTimer, ILogger log)
         {
-            _userService = userService;
-            _mortgageService = mortgageService;
-        }
+            //key: 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
 
-        [Function("SendEmail")]
-        public async Task Run([TimerTrigger("0 0/10 * * *")] TimerInfo myTimer)
-        {
-            List<Mortgage> mortgages = _mortgageService.GetMortgages().Result;
-            if (myTimer.ScheduleStatus is not null)
+            log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+
+            // Set your SendGrid API Key
+            // string apiKey = Environment.GetEnvironmentVariable("sendgrid_key");
+            string apiKey = "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";
+
+            // Set your sender email address
+            string fromEmail = "665709@student.inholland.nl";
+
+            // Set your recipient email address
+            string toEmail = "yeraz.alina@gmail.com";
+
+            // Create a SendGrid client
+            var client = new SendGridClient(apiKey);
+
+            // Create an email message
+            var msg = new SendGridMessage
             {
-                _logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next}");
-            }
+                From = new EmailAddress(fromEmail, "Sender Name"),
+                Subject = "Azure Function TimerTrigger Email",
+                PlainTextContent = "This is a test email from your Azure Function.",
+                HtmlContent = "<strong>This is a test email from your Azure Function.</strong>"
+            };
+            msg.AddTo(new EmailAddress(toEmail, "Recipient Name"));
+
+            // Send the email
+            var response = client.SendEmailAsync(msg).Result;
+
+            log.LogInformation($"Email sent. Status code: {response.StatusCode}");
         }
     }
 }
