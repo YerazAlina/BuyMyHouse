@@ -1,21 +1,18 @@
 using System;
 using System.Net.Mail;
-using BuyMyHouse.Service.Interfaces;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
-namespace MailFunction
+namespace FunctionMail
 {
-    public class SendEmailTimer
+    public class Function1
     {
-        [FunctionName("SendMail")]
-        public void Run([TimerTrigger("0 * * * * *")] TimerInfo myTimer, ILogger log)
+        [FunctionName("Function1")]
+        public void Run([TimerTrigger("0 * * * * *")]TimerInfo myTimer, ILogger log)
         {
-            //key: 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
-
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
             // Set your SendGrid API Key
